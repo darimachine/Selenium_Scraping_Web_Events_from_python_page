@@ -5,6 +5,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 chromer_driver_path = "C:/Users/Serhan/Documents/ChromeDriver/chromedriver.exe"
 driver = webdriver.Chrome(service=Service(chromer_driver_path))
 driver.get('https://www.python.org/')
+
 time = driver.find_elements(By.XPATH,'//*[@id="content"]/div/section/div[2]/div[2]/div/ul/li/time')
 text = driver.find_elements(By.XPATH,'//*[@id="content"]/div/section/div[2]/div[2]/div/ul/li/a')
 time_list = [event.get_attribute("datetime").split("T")[0] for event in time]
@@ -14,7 +15,10 @@ print(text_list)
 # bez list comprehension
 final_dict = {}
 for i in range(len(time_list)):
-    final_dict[i]={'time':time_list[i], 'name':text_list[i]}
+    final_dict[i]={
+        'time':time_list[i],
+        'name':text_list[i]
+    }
 #----------------------------------------------
 final_dict={i:{'time':time_list[i], 'name':text_list[i]} for i in range(len(time_list))} #sus list comrpehension
 #----------------------------------------------
